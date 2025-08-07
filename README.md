@@ -51,10 +51,20 @@ php artisan key:generate
 ```bash
 php artisan migrate
 ````
+7.Instalar dependencias:
+```bash
+npm install
+````
+8.Iniciar el servidor de desarrollo:
+```bash
+npm run dev
+````
 7. llama el servidor
 ```bash
 php artisan serve
 ````
+
 8. Clic en el enlace que se genera y en la direccion URL del sitio al final colocar: /biblioteca
+
 
 
