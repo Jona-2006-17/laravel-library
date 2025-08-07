@@ -4,16 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Libro;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\LibrosRequest;
 class LibroController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $biblioteca = Libro::all();
+        $query = Libro::query();
+        if($request->has('buscar') && !empty($request->buscar)){
+            $busqueda = $request->buscar;
+            $query->where('titulo', 'like', '%'.$busqueda.'%')
+                    ->orWhere('autor', 'like', '%'.$busqueda.'%');
+        }
+        $biblioteca = $query->get();
+
         return view('biblioteca.index', compact('biblioteca'));
+        // $biblioteca = Libro::all();
+        // return view('biblioteca.index', compact('biblioteca'));
     }
 
     /**
@@ -28,7 +37,7 @@ class LibroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LibrosRequest $request)
     {
         Libro::create($request->all());
         return redirect()->route('biblioteca.index');

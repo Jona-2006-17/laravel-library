@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <a href="route{{route('biblioteca.index')}}">Volver</a>
+              <a href="{{route('biblioteca.index')}}">Volver</a>
             </div>
         </div>
         <div class="row">
@@ -19,10 +19,19 @@
                     @csrf
                     <h5>Titulo</h5>
                     <input class="input" type="text" name="titulo">
+                    @error('titulo')
+                      <h5>{{$message}}</h5>
+                    @enderror
                     <h5>Autor</h5>
                     <input class="input" type="text" name="autor">
+                    @error('autor')
+                      <h5>{{$message}}</h5>
+                    @enderror
                     <h5>Año</h5>
                     <input class="input" type="text" name="año">
+                    @error('año')
+                      <h5>{{$message}}</h5>
+                    @enderror
                     <button type="submit">Enviar</button>
                 </form> 
             </div>

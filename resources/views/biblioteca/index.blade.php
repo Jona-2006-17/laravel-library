@@ -6,13 +6,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Biblioteca1</h1>
     <div class="container">
         <div class="row">
             <div class="col">
                 <a href="{{route('biblioteca.create')}}">Registrar libro</a>
             </div>
         </div>
+        <form method="GET" action="{{route('biblioteca.index')}}">
+            <input type="text" name="buscar" placeholder="Buscar por titulo o autor" value="{{request('buscar')}}">
+            <button type="submit">Buscar</button>
+        </form>
         <div class="row">
             <div class="col-6">
                 <table class="table table-hover">
