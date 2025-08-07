@@ -13,5 +13,7 @@ class Libro extends Model
         'titulo',
         'autor',
         'año',
+        'genero',
+        'descripcion',
     ];
 }

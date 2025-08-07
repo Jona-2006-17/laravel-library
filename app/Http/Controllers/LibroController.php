@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Libro;
 use Illuminate\Http\Request;
 use App\Http\Requests\LibrosRequest;
+use Illuminate\Pagination\Paginator;
+
 class LibroController extends Controller
 {
     /**
@@ -12,13 +14,14 @@ class LibroController extends Controller
      */
     public function index(Request $request)
     {
+        Paginator::useBootstrap();
         $query = Libro::query();
         if($request->has('buscar') && !empty($request->buscar)){
             $busqueda = $request->buscar;
             $query->where('titulo', 'like', '%'.$busqueda.'%')
                     ->orWhere('autor', 'like', '%'.$busqueda.'%');
         }
-        $biblioteca = $query->get();
+        $biblioteca = $query->paginate(5);
 
         return view('biblioteca.index', compact('biblioteca'));
         // $biblioteca = Libro::all();
@@ -62,7 +65,7 @@ class LibroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Libro $biblioteca)
+    public function update(LibrosRequest $request, Libro $biblioteca)
     {
         $biblioteca->update($request->all());
         return redirect()->route("biblioteca.index");

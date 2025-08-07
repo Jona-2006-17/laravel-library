@@ -24,7 +24,9 @@ class LibrosRequest extends FormRequest
         return [
             'titulo' => 'required|max:210|min:3',
             'autor'  => 'required|max:70|min:3',
-            'año' => 'required|integer|min:2|max:'.date('Y'),
+            'año' => 'required|integer|min:1000|max:'.date('Y'),
+            'genero' => 'required|max:70|min:3',
+
         ];
     }
     public function messages()
@@ -38,7 +40,10 @@ class LibrosRequest extends FormRequest
             'autor.min' => 'El autor debe tener minimo 3 caracteres',
             'año.required' => 'El año es requerido',
             'año.max' => 'El año no debe ser mayor al actual',
-            'año.min' => 'El año debe tener minimo 3 caracteres',
+            'año.min' => 'El año debe ser apartir del año 1000',
+            'genero.required' => 'El genero es requerido',
+            'genero.max' => 'El gerero excede el limite de caracteres',
+            'genero.min' => 'El gerero debe tener minimo 3 caracteres',
         ];
     }
 }
