@@ -22,6 +22,7 @@
                             <th>Autor</th>
                             <th>Año</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         <tbody>
                             @forelse($biblioteca as $libro)
@@ -30,6 +31,13 @@
                                     <td>{{$libro->autor}}</td>
                                     <td>{{$libro->año}}</td>
                                     <td><button class="btn btn-secondary"><a href="{{route('biblioteca.edit', $libro->id)}}" class="text-decoration-none text-white">Actualizar</a></button></td>
+                                    <td>
+                                        <form method="POST" action="{{route('biblioteca.destroy', $libro->id)}}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este libro?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-secondary" type="submit">Eliminar</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

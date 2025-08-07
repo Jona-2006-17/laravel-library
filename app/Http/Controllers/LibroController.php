@@ -62,8 +62,9 @@ class LibroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Libro $libro)
+    public function destroy(Libro $biblioteca)
     {
-        //
+        $biblioteca->delete();
+        return redirect()->route('biblioteca.index');
     }
 }
