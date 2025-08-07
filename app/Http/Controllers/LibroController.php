@@ -45,17 +45,18 @@ class LibroController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Libro $libro)
+    public function edit(Libro $biblioteca)
     {
-        //
+        return view("biblioteca.edit", compact('biblioteca'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Libro $libro)
+    public function update(Request $request, Libro $biblioteca)
     {
-        //
+        $biblioteca->update($request->all());
+        return redirect()->route("biblioteca.index");
     }
 
     /**
